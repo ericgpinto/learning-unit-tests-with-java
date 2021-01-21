@@ -4,6 +4,7 @@ import com.ericpinto.unittests.entities.Filme;
 import com.ericpinto.unittests.entities.Locacao;
 import com.ericpinto.unittests.entities.Usuario;
 import com.ericpinto.unittests.utils.DataUtils;
+import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,7 @@ public class LocacaoServiceTest {
         Locacao locacao = service.alugarFilme(usuario, filme);
 
         //verificacao
-        Assert.assertTrue(locacao.getValor() == 5.0);
+        Assert.assertThat(locacao.getValor(), CoreMatchers.is(5.0));
         Assert.assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
         Assert.assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(1)));
     }
