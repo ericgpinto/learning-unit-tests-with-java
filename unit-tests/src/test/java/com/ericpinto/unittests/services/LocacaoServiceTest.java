@@ -5,11 +5,11 @@ import com.ericpinto.unittests.entities.Locacao;
 import com.ericpinto.unittests.entities.Usuario;
 import com.ericpinto.unittests.utils.DataUtils;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-public class LocacaoService {
+public class LocacaoServiceTest {
 
     public Locacao alugarFilme(Usuario usuario, Filme filme) {
         Locacao locacao = new Locacao();
@@ -30,19 +30,18 @@ public class LocacaoService {
     }
 
     @Test
-    public void test() {
+    public void teste() {
         //cenario
-        LocacaoService service = new LocacaoService();
-        Usuario usuario = new Usuario("Usuário 1");
+        LocacaoServiceTest service = new LocacaoServiceTest();
+        Usuario usuario = new Usuario("Usuario 1");
         Filme filme = new Filme("Filme 1", 2, 5.0);
 
-        //ação
+        //acao
         Locacao locacao = service.alugarFilme(usuario, filme);
 
-        //validação
+        //verificacao
         Assert.assertTrue(locacao.getValor() == 5.0);
         Assert.assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
         Assert.assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(), DataUtils.obterDataComDiferencaDias(1)));
     }
 }
-
